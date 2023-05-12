@@ -3,7 +3,7 @@
 
 git add .
 echo $1
-git commit -m $1
+git commit -m "$1"
 git remote remove origin
 git remote add origin https://github.com/busAlarm/capstonefrontendmonitor
 git push origin main
