@@ -1,0 +1,1 @@
+const ACCENT_COLOR = 0xFF9DB9FF;

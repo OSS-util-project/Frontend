@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:monitor_app/utils/constants.dart';
+import 'package:monitor_app/view/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "My Material App",
-      home: Scaffold(
-          body: Container(
-        alignment: Alignment.center,
-        child: const Text("Hello world!"),
-      )),
-    );
+        theme: ThemeData(primaryColor: const Color(ACCENT_COLOR)),
+        title: "Monitor App",
+        home: const SplashScreen());
   }
 }
