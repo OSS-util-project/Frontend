@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:monitor_app/view/login_screen.dart';
 import 'package:monitor_app/view/manager_view/container/device_control_container.dart';
@@ -12,6 +16,19 @@ class DeviceMonitorScreen extends StatefulWidget {
 }
 
 class DeviceMonitorScreenState extends State<DeviceMonitorScreen> {
+  late DatabaseReference _databaseReference;
+
+  @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp().then((value) {
+      _databaseReference = FirebaseDatabase.instance.ref().child("status");
+      _databaseReference.onValue.listen((event) {
+        log(event.snapshot.value.toString(), name: "device status");
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

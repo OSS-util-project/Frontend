@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:monitor_app/view/manager_view/device_a_log_screen.dart';
+
+import '../device_b_log_screen.dart';
 
 class DeviceStatusContainer extends StatefulWidget {
   // A, B
@@ -30,7 +33,22 @@ class DeviceStatusContainerState extends State<DeviceStatusContainer> {
             ),
           ),
           ElevatedButton(
-            onPressed: () => {},
+            onPressed: () => {
+              if (deviceType == "A")
+                {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DeviceALogScreen()))
+                },
+              if (deviceType == "B")
+                {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DeviceBLogScreen()))
+                }
+            },
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
                     const Color.fromRGBO(249, 157, 28, 50))),
