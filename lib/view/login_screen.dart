@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monitor_app/view/manager_view/device_monitor_screen.dart';
 import 'package:monitor_app/view/sign_up_screen.dart';
+import 'package:monitor_app/view/user_view/user_main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -10,6 +11,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
+  String id = "";
+  String password = "";
+
   late TextEditingController _idController;
   late TextEditingController _passwordController;
 
@@ -29,9 +33,6 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String id = "";
-    String password = "";
-
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
@@ -57,9 +58,9 @@ class LoginScreenState extends State<LoginScreen> {
                     enabledBorder: OutlineInputBorder(
                         borderRadius:
                             BorderRadius.all(Radius.elliptical(6, 6)))),
-                onSubmitted: (value) {
+                onChanged: (value) {
                   setState(() {
-                    id = value;
+                    id = _idController.text;
                   });
                 },
               ),
@@ -69,6 +70,7 @@ class LoginScreenState extends State<LoginScreen> {
               width: 270,
               height: 60,
               child: TextField(
+                obscureText: true,
                 controller: _passwordController,
                 decoration: const InputDecoration(
                     hintText: "비밀번호",
@@ -79,9 +81,9 @@ class LoginScreenState extends State<LoginScreen> {
                     enabledBorder: OutlineInputBorder(
                         borderRadius:
                             BorderRadius.all(Radius.elliptical(6, 6)))),
-                onSubmitted: (value) {
+                onChanged: (value) {
                   setState(() {
-                    password = value;
+                    password = _passwordController.text;
                   });
                 },
               ),
@@ -102,11 +104,22 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   onPressed: () => {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const DeviceMonitorScreen()))
+                        if (id == "admin" && password == "admin")
+                          {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const DeviceMonitorScreen()))
+                          }
+                        else
+                          {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const UserMainScreen()))
+                          }
                       },
                   child: const Text(
                     "로그인",
@@ -132,7 +145,7 @@ class LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     onPressed: () => {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const SignupScreen()))

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monitor_app/view/login_screen.dart';
 import 'package:monitor_app/view/user_view/container/arrival_notification_setting_container.dart';
 import 'package:monitor_app/view/user_view/container/arrival_soon_container.dart';
 import 'package:monitor_app/view/user_view/container/route_arrival_container.dart';
@@ -17,7 +18,14 @@ class UserMainScreenState extends State<UserMainScreen> {
         appBar: AppBar(
           title: const Text("죽전캠 버스 도착정보"),
           actions: [
-            IconButton(onPressed: () => {}, icon: const Icon(Icons.logout))
+            IconButton(
+                onPressed: () => {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()))
+                    },
+                icon: const Icon(Icons.logout))
           ],
         ),
         body: SingleChildScrollView(

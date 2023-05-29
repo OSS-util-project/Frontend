@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'login_screen.dart';
+
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
@@ -61,9 +63,9 @@ class SignupScreenState extends State<SignupScreen> {
                     enabledBorder: OutlineInputBorder(
                         borderRadius:
                             BorderRadius.all(Radius.elliptical(6, 6)))),
-                onSubmitted: (value) {
+                onChanged: (value) {
                   setState(() {
-                    name = value;
+                    name = _nameController.text;
                   });
                 },
               ),
@@ -84,9 +86,9 @@ class SignupScreenState extends State<SignupScreen> {
                     enabledBorder: OutlineInputBorder(
                         borderRadius:
                             BorderRadius.all(Radius.elliptical(6, 6)))),
-                onSubmitted: (value) {
+                onChanged: (value) {
                   setState(() {
-                    id = value;
+                    id = _idController.text;
                   });
                 },
               ),
@@ -107,9 +109,9 @@ class SignupScreenState extends State<SignupScreen> {
                     enabledBorder: OutlineInputBorder(
                         borderRadius:
                             BorderRadius.all(Radius.elliptical(6, 6)))),
-                onSubmitted: (value) {
+                onChanged: (value) {
                   setState(() {
-                    password = value;
+                    password = _passwordController.text;
                   });
                 },
               ),
@@ -130,9 +132,9 @@ class SignupScreenState extends State<SignupScreen> {
                     enabledBorder: OutlineInputBorder(
                         borderRadius:
                             BorderRadius.all(Radius.elliptical(6, 6)))),
-                onSubmitted: (value) {
+                onChanged: (value) {
                   setState(() {
-                    checkPassword = value;
+                    checkPassword = _checkPasswordController.text;
                   });
                 },
               ),
@@ -159,8 +161,10 @@ class SignupScreenState extends State<SignupScreen> {
                         // 2) 유효한 정보라면 서버에 데이터 전송
                         // 팝업창 중간에 띄우기
                         // 3) 이후 현재 화면 pop
-
-                        Navigator.pop(context)
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginScreen()))
                       },
                   child: const Text(
                     "회원가입",
@@ -190,10 +194,10 @@ class SignupScreenState extends State<SignupScreen> {
                           // 1) 만약 입력중인 form이 있다면 팝업창으로 묻기
                           // 2) 확인 / 취소 선택지를 제공하여, 확인을 누르면 현재화면 pop
 
-                          Navigator.push(
+                          Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const SignupScreen()))
+                                  builder: (context) => const LoginScreen()))
                         },
                     child: const Text(
                       "로그인 화면으로 돌아가기",
