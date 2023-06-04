@@ -12,6 +12,11 @@ class DeviceALogScreen extends StatefulWidget {
 class DeviceALogScreenState extends State<DeviceALogScreen> {
   @override
   Widget build(BuildContext context) {
+    @override
+    void initState() {
+      super.initState();
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("A 단말기 로그"),

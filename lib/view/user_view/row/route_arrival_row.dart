@@ -4,14 +4,14 @@ import '../item/bus_route.dart';
 
 class RouteArrivalRow extends StatelessWidget {
   final String routeName;
-  final int colorRGB0;
-  final int remainingStation;
-  final int remainingTime;
+  final int colorRGBO;
+  final String remainingStation;
+  final String remainingTime;
 
   const RouteArrivalRow(
       {super.key,
       required this.routeName,
-      required this.colorRGB0,
+      required this.colorRGBO,
       required this.remainingStation,
       required this.remainingTime});
 
@@ -20,10 +20,10 @@ class RouteArrivalRow extends StatelessWidget {
     return SizedBox(
       height: 30,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        BusRoute(routeName: routeName, colorRGBO: colorRGB0),
+        BusRoute(routeName: routeName, colorRGBO: colorRGBO),
         SizedBox(
           width: 80,
-          child: Text("$remainingStation정거장",
+          child: Text(remainingStation,
               textAlign: TextAlign.right,
               style:
                   const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),

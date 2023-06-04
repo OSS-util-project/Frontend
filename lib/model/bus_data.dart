@@ -1,4 +1,6 @@
 class BusData {
+  final String routeId;
+  final String timeStamp;
   final String firstTime;
   final String lastTime;
   final String predictTime1;
@@ -9,7 +11,9 @@ class BusData {
   final bool arrivalSoon;
 
   BusData(
-      {required this.firstTime,
+      {required this.routeId,
+      required this.timeStamp,
+      required this.firstTime,
       required this.lastTime,
       required this.predictTime1,
       required this.stationNm1,
@@ -17,4 +21,18 @@ class BusData {
       required this.stationNm2,
       required this.isRunning,
       required this.arrivalSoon});
+
+  factory BusData.fromJson(Map<String, dynamic> json) {
+    return BusData(
+        routeId: json['routeId'],
+        timeStamp: json['timeStamp'],
+        firstTime: json['firstTime'],
+        lastTime: json['lastTime'],
+        predictTime1: json['predictTime1'],
+        stationNm1: json['stationNm1'],
+        predictTime2: json['predictTime2'],
+        stationNm2: json['stationNm2'],
+        isRunning: json['isRunning'],
+        arrivalSoon: json['arrivalSoon']);
+  }
 }
