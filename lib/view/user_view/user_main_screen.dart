@@ -21,9 +21,29 @@ class UserMainScreen extends StatefulWidget {
 class UserMainScreenState extends State<UserMainScreen> {
   late Timer timer;
 
+  List<BusData> busDataList = [];
+
   BusData? busData24;
   BusData? busData720_3;
   BusData? busDataShuttle;
+
+  UserMainScreenState() {
+    getData("24");
+    getData("720-3");
+    getData("shuttle");
+
+    timer = Timer(const Duration(seconds: REQUEST_INTERVAL_SECONDS), () {
+      getData("24");
+      getData("720-3");
+      getData("shuttle");
+    });
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
 
   static Future<BusData> getBusArrivalData(String routeName) async {
     const String baseUrl =
@@ -38,25 +58,24 @@ class UserMainScreenState extends State<UserMainScreen> {
   }
 
   // TO DO: 데이터 가져오기 (30초마다)
-  void getData() async {
-    busData24 = await getBusArrivalData("24");
-    busData720_3 = await getBusArrivalData("720-3");
-    busDataShuttle = await getBusArrivalData("shuttle");
-  }
+  void getData(String routeName) async {
+    final response = await getBusArrivalData(routeName);
 
-  @override
-  void initState() {
-    super.initState();
-    timer = Timer(const Duration(seconds: REQUEST_INTERVAL_SECONDS), () {
-      setState(() {
-        getData();
-      });
+    setState(() {
+      switch (routeName) {
+        case "24":
+          busData24 = response;
+          break;
+
+        case "720-3":
+          busData720_3 = response;
+          break;
+
+        case "shuttle":
+          busDataShuttle = response;
+          break;
+      }
     });
-  }
-
-  void disposed() {
-    timer.cancel();
-    super.dispose();
   }
 
   @override
@@ -83,10 +102,12 @@ class UserMainScreenState extends State<UserMainScreen> {
               children: [
                 const Padding(padding: EdgeInsets.all(4)),
                 ArrivalSoonContainer(
-                    busDataList: [busData24, busData720_3, busDataShuttle]),
+                  busDataList: [busData24, busData720_3, busDataShuttle],
+                ),
                 const Padding(padding: EdgeInsets.all(4)),
                 RouteArrivalContainer(
-                    busDataList: [busData24, busData720_3, busDataShuttle]),
+                  busDataList: [busData24, busData720_3, busDataShuttle],
+                ),
                 const Padding(padding: EdgeInsets.all(4)),
                 const ArrivalNotificationSettingsContainer()
               ],

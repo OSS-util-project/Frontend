@@ -18,7 +18,7 @@ class RouteArrivalRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 30,
+      height: 60,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         BusRoute(routeName: routeName, colorRGBO: colorRGBO),
         SizedBox(

@@ -1,19 +1,11 @@
-import 'package:monitor_app/provider/bus_data_provider.dart';
-import 'package:monitor_app/provider/device_status_data_provider.dart';
-import 'package:provider/provider.dart';
-
 import 'package:flutter/material.dart';
 import 'package:monitor_app/utils/constants.dart';
 import 'package:monitor_app/view/splash_screen.dart';
 
 void main() {
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_) => BusDataProvider()),
-      ChangeNotifierProvider(create: (_) => DeviceStatusDataProvider())
-    ],
-    child: const MyApp(),
-  ));
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {

@@ -3,21 +3,11 @@ import 'package:monitor_app/model/bus_data.dart';
 import 'package:monitor_app/utils/constants.dart';
 import 'package:monitor_app/view/user_view/item/bus_route.dart';
 
-class ArrivalSoonContainer extends StatefulWidget {
+class ArrivalSoonContainer extends StatelessWidget {
   final List<BusData?> busDataList;
-
-  const ArrivalSoonContainer({super.key, required this.busDataList});
-
-  @override
-  State<StatefulWidget> createState() =>
-      ArrivalSoonContainerState(busDataList: busDataList);
-}
-
-class ArrivalSoonContainerState extends State<ArrivalSoonContainer> {
-  late final List<BusData?> busDataList;
   List<BusRoute> busArrivalSoonList = [];
 
-  ArrivalSoonContainerState({required List<BusData?> busDataList}) {
+  ArrivalSoonContainer({super.key, required this.busDataList}) {
     Map<String, bool> arrivalBusList = {
       "24": busDataList[0]?.arrivalSoon ?? false,
       "720-3": busDataList[1]?.arrivalSoon ?? false,

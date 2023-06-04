@@ -5,22 +5,15 @@ import 'package:monitor_app/view/user_view/row/route_arrival_row.dart';
 
 import '../../../model/bus_data.dart';
 
-class RouteArrivalContainer extends StatefulWidget {
-  final List<BusData?> busDataList;
-
-  const RouteArrivalContainer({super.key, required this.busDataList});
-
-  @override
-  State<StatefulWidget> createState() =>
-      RouteArrivalContainerState(busDataList: busDataList);
-}
-
-class RouteArrivalContainerState extends State<RouteArrivalContainer> {
+class RouteArrivalContainer extends StatelessWidget {
   late final List<BusData?> busDataList;
   late List<Widget> busArrivalRowList;
   String timestamp = "";
 
-  RouteArrivalContainerState({required List<BusData?> busDataList}) {
+  RouteArrivalContainer({
+    super.key,
+    required List<BusData?> busDataList,
+  }) {
     timestamp = getNowTimeStamp();
     busArrivalRowList = [
       const Text(
